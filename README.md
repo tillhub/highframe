@@ -4,7 +4,10 @@
 
 **Use cases:**
 
-- can be used externsively in breaking up large UIs into microfrontends.
+- can be used extensively in breaking up large UIs into microfrontends
+- normalizes the `postMessage` API
+- share data between frames
+- use integrations to make full use of iframes in frameworks (Vue, React) and their paradigms
 
 ## Usage
 
