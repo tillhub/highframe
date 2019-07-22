@@ -113,7 +113,7 @@ export class HighframeClient extends events.EventEmitter {
   private bindEvents() {
     Object.entries(HighframeClient.EventMap).forEach(evt => {
       const eName = evt[0]
-      const map = evt[1] as EventMapItem
+      const map: EventMapItem = evt[1]
 
       const handler = (e: Event) => {
         this._emit(map.name, e)
@@ -198,11 +198,11 @@ export default class Highframe extends events {
   }
 
   private static createClientTarget(src: string, { title, properties }: HighframeClientOptions): HTMLIFrameElement {
-    const elem = document.createElement('iframe') as HTMLIFrameElement
+    const elem: HTMLIFrameElement = document.createElement('iframe')
     elem.src = src
     if (title) elem.title = title
 
-    elem.frameBorder = properties ? properties.frameBorder : '0'
+    elem.frameBorder = properties ? properties.frameBorder : '0' // tslint:disable-line deprecation
     // the following following are opinionated property and style normalisations
     // that one almost always wants. We allow the user to override them
     elem.width = properties && (properties.width || Number.isFinite(properties.width as number)) ? String(properties.width) : '100%'
