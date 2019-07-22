@@ -1,9 +1,15 @@
 # Highframe
 
+> JavaScript utilities to integrate iframes into other apps.
+
+**Use cases:**
+
+- can be used externsively in breaking up large UIs into microfrontends.
+
 ## Usage
 
 ```bash
-npm install @tillhub/highframe
+npm install highframe
 ```
 
 ## Features
