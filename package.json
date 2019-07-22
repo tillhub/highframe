@@ -2,7 +2,15 @@
   "name": "highframe",
   "version": "1.0.1",
   "description": "JavaScript utilities to integrate iframes into other apps.",
-  "keywords": [],
+  "keywords": [
+    "iframe",
+    "highframe",
+    "postmessage",
+    "microfrontend",
+    "microfrontends",
+    "vue",
+    "react"
+  ],
   "main": "dist/highframe.js",
   "module": "dist/highframe.js",
   "typings": "dist/types/highframe.d.ts",
