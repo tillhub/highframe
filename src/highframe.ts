@@ -13,20 +13,17 @@ export {
   HighframeChild
 }
 
-interface HighframeClientElementProperties {
-  frameBorder: string,
-  width?: string | number
-  height?: string | number
-  allowFullscreen?: boolean
-  allowPaymentRequest?: boolean
-  name?: string
-}
-
 interface HighframeOptions {
   src: string
   title?: string
   childOrigin: string
-  properties?: HighframeClientElementProperties
+  frameBorder: string,
+  width?: string | number
+  height?: string | number
+  allowFullscreen?: boolean
+  sandbox?: string
+  allowPaymentRequest?: boolean
+  name?: string
 }
 
 interface HighframeClientOptions extends HighframeOptions {
@@ -197,18 +194,34 @@ export default class Highframe extends events {
     holder.appendChild(target)
   }
 
-  private static createClientTarget(src: string, { title, properties }: HighframeClientOptions): HTMLIFrameElement {
+  private static createClientTarget(src: string, options: HighframeClientOptions): HTMLIFrameElement {
     const elem: HTMLIFrameElement = document.createElement('iframe')
     elem.src = src
-    if (title) elem.title = title
+    if (options && options.title) elem.title = options.title
+    if (options && options.name) elem.name = options.name
 
-    elem.frameBorder = properties ? properties.frameBorder : '0' // tslint:disable-line deprecation
+    elem.frameBorder = options ? options.frameBorder : '0' // tslint:disable-line deprecation
     // the following following are opinionated property and style normalisations
     // that one almost always wants. We allow the user to override them
-    elem.width = properties && (properties.width || Number.isFinite(properties.width as number)) ? String(properties.width) : '100%'
-    elem.height = properties && (properties.height || Number.isFinite(properties.height as number)) ? String(properties.height) : '100%'
-    elem.allowFullscreen = properties && properties.allowFullscreen ? true : false
-    elem.allowFullscreen = properties && properties.allowPaymentRequest ? true : false
+    elem.width = options && (options.width || Number.isFinite(options.width as number)) ? String(options.width) : '100%'
+    elem.height = options && (options.height || Number.isFinite(options.height as number)) ? String(options.height) : '100%'
+    elem.allowFullscreen = options && options.allowFullscreen ? true : false
+    elem.allowFullscreen = options && options.allowPaymentRequest ? true : false
+
+    // since sandbox seems rather experimental, let us catch it
+    if (options && options.sandbox) {
+      try {
+        if (elem.sandbox.add) {
+          options.sandbox.split(' ').forEach(function (item) {
+            elem.sandbox.add(item)
+          })
+        } else {
+          (elem as any).sandbox = options.sandbox
+        }
+      } catch (err) {
+        // no-op
+      }
+    }
 
     // margin: 0;
     // padding: 0;
