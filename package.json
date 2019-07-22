@@ -134,7 +134,10 @@
     "vue-loader": "^15.7.1",
     "vue-template-compiler": "^2.6.10"
   },
-  "dependencies": {},
+  "dependencies": {
+    "@types/url-parse": "^1.4.3",
+    "url-parse": "^1.4.7"
+  },
   "release": {
     "verifyConditions": [
       "@semantic-release/changelog",

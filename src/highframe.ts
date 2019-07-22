@@ -5,6 +5,8 @@ import { HighframeMessage } from './message'
 import HighframeChild from './child'
 import { sanitizeMessage } from './helpers'
 
+import Url from 'url-parse'
+
 export function debug(...args: any[]) {
   if (Highframe.debug) console.log(...['Highframe: ', ...args])
 }
@@ -240,9 +242,14 @@ export default class Highframe extends events {
     return elem
   }
 
-  static create(target: HTMLElement, options: HighframeClientOptions): Highframe {
+  public static create(target: HTMLElement, options: HighframeClientOptions): Highframe {
     const inst = new Highframe(target, options)
 
     return inst
+  }
+
+  public static parseOrigin(url: string) {
+    const _url = new Url(url)
+    return `${_url.protocol}${_url.slashes}${_url.hostname}`
   }
 }
