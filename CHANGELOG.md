@@ -1,3 +1,10 @@
+## [1.0.1](https://github.com/tillhub/highframe/compare/v1.0.0...v1.0.1) (2019-07-22)
+
+
+### Bug Fixes
+
+* add correct install docs ([2585f57](https://github.com/tillhub/highframe/commit/2585f57))
+
 # 1.0.0 (2019-07-22)
 
 
