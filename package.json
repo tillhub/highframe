@@ -1,0 +1,155 @@
+{
+  "name": "highframe",
+  "version": "0.1.0",
+  "description": "JavaScript utilities to integrate iframes into other apps.",
+  "keywords": [],
+  "main": "dist/highframe.js",
+  "module": "dist/highframe.js",
+  "typings": "dist/types/highframe.d.ts",
+  "files": [
+    "package.json",
+    "package-lock.json",
+    "dist",
+    "CHANGELOG.md"
+  ],
+  "author": "Robert Jefe Lindstaedt <robert.lindstaedt@gmail.com>",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/tillhub/highframe.git"
+  },
+  "license": "MIT",
+  "engines": {
+    "node": ">=6.0.0"
+  },
+  "scripts": {
+    "lint": "tslint -t codeFrame 'src/**/*.ts' 'test/**/*.ts'",
+    "prebuild": "rimraf dist",
+    "build:main": "tsc -p tsconfig.json",
+    "build:docs": "typedoc --out docs --target es6 --theme minimal --mode file src",
+    "build:bundle": "tsc --module commonjs",
+    "build": "npm run clean && npm run build:bundle && npm run build:docs",
+    "clean": "rimraf dist docs",
+    "test": "jest",
+    "test:watch": "jest --watchAll",
+    "tdd": "npm run test:watch",
+    "test:prod": "npm run lint && npm run test -- --coverage --no-cache --runInBand",
+    "deploy-docs": "ts-node tools/gh-pages-publish",
+    "coverage": "codecov",
+    "precommit": "npm run lint -- --fix && git add -A",
+    "commit": "git-cz",
+    "semantic-release": "semantic-release",
+    "semantic-release-prepare": "ts-node tools/semantic-release-prepare",
+    "travis-deploy-once": "travis-deploy-once",
+    "storybook": "start-storybook -p 9001 -c .storybook"
+  },
+  "config": {
+    "commitizen": {
+      "path": "node_modules/cz-conventional-changelog"
+    },
+    "validate-commit-msg": {
+      "types": "conventional-commit-types",
+      "helpMessage": "Use \"npm run commit\" instead, we use conventional-changelog format :) (https://github.com/commitizen/cz-cli)"
+    }
+  },
+  "jest": {
+    "transform": {
+      ".(ts|tsx)": "<rootDir>/node_modules/ts-jest/preprocessor.js"
+    },
+    "testRegex": "(/__tests__/.*|\\.(test|spec))\\.(ts|tsx|js)$",
+    "moduleFileExtensions": [
+      "ts",
+      "tsx",
+      "js"
+    ],
+    "coveragePathIgnorePatterns": [
+      "/node_modules/",
+      "/test/",
+      "/src/@types/"
+    ],
+    "coverageThreshold": {
+      "global": {
+        "branches": 30,
+        "functions": 30,
+        "lines": 30,
+        "statements": 30
+      }
+    },
+    "collectCoverage": true
+  },
+  "devDependencies": {
+    "@babel/core": "^7.5.5",
+    "@semantic-release/changelog": "^3.0.4",
+    "@semantic-release/git": "^7.0.16",
+    "@semantic-release/github": "^5.4.2",
+    "@semantic-release/npm": "^5.1.13",
+    "@storybook/vue": "^5.1.9",
+    "@types/dotenv": "^6.1.1",
+    "@types/jest": "^23.3.11",
+    "@types/node": "^12.6.8",
+    "awesome-typescript-loader": "^5.2.1",
+    "babel-core": "^6.26.3",
+    "babel-loader": "^8.0.6",
+    "babel-preset-vue": "^2.0.2",
+    "browserify": "^16.2.3",
+    "codecov": "^3.5.0",
+    "colors": "^1.3.3",
+    "commitizen": "^2.10.1",
+    "common-tags": "^1.8.0",
+    "core-js": "^2.6.1",
+    "cross-env": "^5.2.0",
+    "cz-conventional-changelog": "^2.1.0",
+    "dotenv": "^8.0.0",
+    "husky": "^0.14.3",
+    "jest": "^24.8.0",
+    "jest-localstorage-mock": "^2.3.0",
+    "lodash.camelcase": "^4.3.0",
+    "node": "^12.6.0",
+    "prettier": "^1.18.2",
+    "prismjs": "^1.15.0",
+    "prompt": "^1.0.0",
+    "replace-in-file": "^3.4.2",
+    "rimraf": "^2.6.3",
+    "semantic-release": "^15.13.18",
+    "serialize-error": "^3.0.0",
+    "travis-deploy-once": "^5.0.11",
+    "ts-jest": "^24.0.2",
+    "ts-loader": "^6.0.4",
+    "ts-node": "^8.3.0",
+    "tsify": "^4.0.1",
+    "tslint": "^5.18.0",
+    "tslint-config-prettier": "^1.18.0",
+    "tslint-config-standard": "^8.0.1",
+    "typedoc": "^0.14.2",
+    "typescript": "^3.5.3",
+    "validate-commit-msg": "^2.14.0",
+    "vue": "^2.6.10",
+    "vue-loader": "^15.7.1",
+    "vue-template-compiler": "^2.6.10"
+  },
+  "dependencies": {},
+  "release": {
+    "verifyConditions": [
+      "@semantic-release/changelog",
+      "@semantic-release/npm",
+      "@semantic-release/git"
+    ],
+    "prepare": [
+      "@semantic-release/npm",
+      "@semantic-release/changelog",
+      {
+        "path": "@semantic-release/git",
+        "assets": [
+          "package.json",
+          "package-lock.json",
+          "dist",
+          "CHANGELOG.md"
+        ],
+        "message": "chore(release): Release ${nextRelease.version} - <%=new Date().toLocaleDateString('en-US', {year: 'numeric', month: 'short', day: 'numeric', hour: 'numeric', minute: 'numeric' })%> [skip ci]\n\n${nextRelease.notes}"
+      }
+    ],
+    "publish": [
+      "@semantic-release/npm",
+      "@semantic-release/github"
+    ]
+  }
+}

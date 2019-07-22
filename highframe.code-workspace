@@ -1,0 +1,12 @@
+{
+  "folders": [
+    {
+      "path": "."
+    },
+    {
+      "name": "examples-microfrontends",
+      "path": "./examples/microfrontends"
+    }
+  ],
+  "settings": {}
+}
