@@ -1,6 +1,6 @@
 {
   "name": "highframe",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "JavaScript utilities to integrate iframes into other apps.",
   "keywords": [
     "iframe",

@@ -1,3 +1,10 @@
+## [1.0.2](https://github.com/tillhub/highframe/compare/v1.0.1...v1.0.2) (2019-07-22)
+
+
+### Bug Fixes
+
+* **docs:** remove some typo, add some more desc ([baac3f9](https://github.com/tillhub/highframe/commit/baac3f9))
+
 ## [1.0.1](https://github.com/tillhub/highframe/compare/v1.0.0...v1.0.1) (2019-07-22)
 
 
