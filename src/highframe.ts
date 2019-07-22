@@ -248,7 +248,7 @@ export default class Highframe extends events {
     return inst
   }
 
-  public static parseOrigin(url: string) {
+  public static parseOrigin(url: string): string {
     const _url = new Url(url)
     return `${_url.protocol}${_url.slashes}${_url.hostname}`
   }
