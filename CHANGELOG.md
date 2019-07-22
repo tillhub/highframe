@@ -1,3 +1,10 @@
+# [1.1.0](https://github.com/tillhub/highframe/compare/v1.0.3...v1.1.0) (2019-07-22)
+
+
+### Features
+
+* add url parsing capabilities ([ff315ac](https://github.com/tillhub/highframe/commit/ff315ac))
+
 ## [1.0.3](https://github.com/tillhub/highframe/compare/v1.0.2...v1.0.3) (2019-07-22)
 
 
