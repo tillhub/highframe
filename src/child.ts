@@ -3,12 +3,13 @@ import { HighframeMessage } from './message'
 import { sanitizeMessage } from './helpers'
 
 interface HighframeChildOptions {
-  parentOrigin: string
+  parentOrigin: string,
+  parentOrigins: string[]
 }
 
 export default class HighframeChild extends events {
   public options: HighframeChildOptions
-  private handler?: Function
+  private handlers: Function[] = []
 
   constructor(options: HighframeChildOptions) {
     super()
@@ -19,18 +20,41 @@ export default class HighframeChild extends events {
   }
 
   private attach() {
-    const handler = (e: MessageEvent) => {
-      if (!sanitizeMessage(e, { allowedOrigin: this.options.parentOrigin })) return
-      this.handleMessage(e)
+    let origins = []
+    if (this.options.parentOrigin) {
+      origins.push(this.options.parentOrigin)
     }
 
-    if (this.handler) {
-      // REVIEW: review this cast
-      window.removeEventListener('message', this.handler as EventListenerOrEventListenerObject)
+    if (this.options.parentOrigins && Array.isArray(this.options.parentOrigins)) {
+      origins = [
+        ...origins,
+        ...this.options.parentOrigins
+      ]
     }
 
-    this.handler = handler
-    window.addEventListener('message', handler)
+    const _removeHandler = (handler: Function) => {
+      window.removeEventListener('message', handler as EventListenerOrEventListenerObject)
+    }
+
+    if (this.handlers.length) {
+      this.handlers.forEach((handler: Function) => [
+        _removeHandler(handler)
+      ])
+    }
+
+    const _attachHandler = (origin: string) => {
+      const handler = (e: MessageEvent) => {
+        if (!sanitizeMessage(e, { allowedOrigin: this.options.parentOrigin })) return
+        this.handleMessage(e)
+      }
+
+      this.handlers.push(handler)
+      window.addEventListener('message', handler)
+    }
+
+    origins.forEach((origin: string) => {
+      _attachHandler(origin)
+    })
   }
 
   private handleMessage(e: MessageEvent) {
