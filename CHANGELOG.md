@@ -1,3 +1,10 @@
+# [1.3.0](https://github.com/tillhub/highframe/compare/v1.2.3...v1.3.0) (2019-07-23)
+
+
+### Features
+
+* destroy properly ([ad73302](https://github.com/tillhub/highframe/commit/ad73302))
+
 ## [1.2.3](https://github.com/tillhub/highframe/compare/v1.2.2...v1.2.3) (2019-07-23)
 
 
