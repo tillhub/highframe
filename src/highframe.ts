@@ -60,13 +60,6 @@ interface BoundEventsItem {
   }
 }
 
-interface IHTMLElement {
-  firstKey: string
-  secondKey: string
-  thirdKey: string
-  [key: string]: string
-}
-
 export declare interface HighframeClient {
   // on(event: 'raw-error' | 'error', listener: (error: Error) => void): this
   on(event: string, listener: Function): this
