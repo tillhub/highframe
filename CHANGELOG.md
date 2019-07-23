@@ -1,3 +1,10 @@
+## [1.2.1](https://github.com/tillhub/highframe/compare/v1.2.0...v1.2.1) (2019-07-23)
+
+
+### Bug Fixes
+
+* use actual slashes ([88ede55](https://github.com/tillhub/highframe/commit/88ede55))
+
 # [1.2.0](https://github.com/tillhub/highframe/compare/v1.1.0...v1.2.0) (2019-07-23)
 
 
