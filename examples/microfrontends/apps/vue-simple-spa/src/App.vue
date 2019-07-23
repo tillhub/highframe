@@ -23,9 +23,12 @@ export default {
   },
   created () {
     this.parent = new HighframeChild({ parentOrigins: ['http://localhost:8080'] })
-    console.log('==============================')
-    console.log(this.parent)
-    console.log('==============================')
+
+    this.parent.on('model', (model) => {
+      console.log('==============================')
+      console.log(model)
+      console.log('==============================')
+    })
   }
 }
 </script>

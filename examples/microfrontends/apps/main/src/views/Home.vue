@@ -28,6 +28,7 @@ export default {
     this.highframe = Highframe.create(this.$refs.target, { src: 'http://localhost:8081', childOrigin: 'http://localhost:8081' })
 
     this.highframe.on('ready', () => {
+      this.highframe.dispatch('model', { some: 'thing' })
       console.log('==============================')
       console.log('ready')
       console.log('==============================')

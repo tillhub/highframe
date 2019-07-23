@@ -180,7 +180,7 @@ export default class Highframe extends events {
   }
 
   public dispatch(type: string, ...args: any[]): boolean {
-    this.client.sendMessage(type, args)
+    this.client.sendMessage(type, ...args)
     return true
   }
 
