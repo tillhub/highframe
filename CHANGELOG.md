@@ -1,3 +1,10 @@
+# [1.2.0](https://github.com/tillhub/highframe/compare/v1.1.0...v1.2.0) (2019-07-23)
+
+
+### Features
+
+* **child:** allow for multiple parents ([1bc0fea](https://github.com/tillhub/highframe/commit/1bc0fea))
+
 # [1.1.0](https://github.com/tillhub/highframe/compare/v1.0.3...v1.1.0) (2019-07-22)
 
 
