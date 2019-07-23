@@ -15,10 +15,6 @@
 <script>
 import { HighframeChild } from 'highframe'
 
-console.log('==============================')
-console.log(HighframeChild)
-console.log('==============================')
-
 export default {
   data () {
     return {
@@ -26,7 +22,7 @@ export default {
     }
   },
   created () {
-    this.parent = new HighframeChild({ parentOrigin: 'http://localhost:8080' })
+    this.parent = new HighframeChild({ parentOrigins: ['http://localhost:8080'] })
     console.log('==============================')
     console.log(this.parent)
     console.log('==============================')

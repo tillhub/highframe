@@ -9,13 +9,8 @@
 </template>
 
 <script>
-import { HighframeChild } from 'highframe'
 // @ is an alias to /src
 import HelloWorld from '@/components/HelloWorld.vue'
-
-console.log('==============================')
-console.log(HighframeChild)
-console.log('==============================')
 
 export default {
   name: 'Home',
