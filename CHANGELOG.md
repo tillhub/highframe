@@ -1,3 +1,10 @@
+# [1.4.0](https://github.com/tillhub/highframe/compare/v1.3.0...v1.4.0) (2019-07-23)
+
+
+### Features
+
+* ignore some none highframe messages ([f337119](https://github.com/tillhub/highframe/commit/f337119))
+
 # [1.3.0](https://github.com/tillhub/highframe/compare/v1.2.3...v1.3.0) (2019-07-23)
 
 
