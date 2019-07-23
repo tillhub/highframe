@@ -35,15 +35,7 @@ export default class HighframeChild extends events {
 
     this.origins = origins
 
-    const _removeHandler = (handler: Function) => {
-      window.removeEventListener('message', handler as EventListenerOrEventListenerObject)
-    }
-
-    if (this.handlers.length) {
-      this.handlers.forEach((handler: Function) => [
-        _removeHandler(handler)
-      ])
-    }
+    this.maybeRemoveHandler()
 
     const _attachHandler = (origin: string) => {
       const handler = (e: MessageEvent) => {
@@ -80,5 +72,21 @@ export default class HighframeChild extends events {
     })
 
     return true
+  }
+
+  private maybeRemoveHandler(): void {
+    const _removeHandler = (handler: Function) => {
+      window.removeEventListener('message', handler as EventListenerOrEventListenerObject)
+    }
+
+    if (this.handlers.length) {
+      this.handlers.forEach((handler: Function) => [
+        _removeHandler(handler)
+      ])
+    }
+  }
+
+  public destroy(): void {
+    this.maybeRemoveHandler()
   }
 }

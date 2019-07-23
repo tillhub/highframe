@@ -131,10 +131,7 @@ export class HighframeClient extends events.EventEmitter {
       this.handleMessage(e)
     }
 
-    if (this.handler) {
-      // REVIEW: review this cast
-      window.removeEventListener('message', this.handler as EventListenerOrEventListenerObject)
-    }
+    this.maybeRemoveHandler()
 
     this.handler = handler
     window.addEventListener('message', handler)
@@ -146,9 +143,16 @@ export class HighframeClient extends events.EventEmitter {
     this._emit(msg.event, ...msg.args)
   }
 
-  // public destroy(): void {
+  private maybeRemoveHandler() {
+    if (this.handler) {
+      // REVIEW: review this cast
+      window.removeEventListener('message', this.handler as EventListenerOrEventListenerObject)
+    }
+  }
 
-  // }
+  public destroy(): void {
+    this.maybeRemoveHandler()
+  }
 }
 
 export default class Highframe extends events {
@@ -251,5 +255,9 @@ export default class Highframe extends events {
   public static parseOrigin(url: string): string {
     const _url = new Url(url)
     return `${_url.protocol}//${_url.hostname}`
+  }
+
+  public destroy(): void {
+    this.client.destroy()
   }
 }
