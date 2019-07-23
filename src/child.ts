@@ -3,13 +3,14 @@ import { HighframeMessage } from './message'
 import { sanitizeMessage } from './helpers'
 
 interface HighframeChildOptions {
-  parentOrigin: string,
-  parentOrigins: string[]
+  parentOrigin?: string,
+  parentOrigins?: string[]
 }
 
 export default class HighframeChild extends events {
   public options: HighframeChildOptions
   private handlers: Function[] = []
+  private origins: string[] = []
 
   constructor(options: HighframeChildOptions) {
     super()
@@ -32,6 +33,8 @@ export default class HighframeChild extends events {
       ]
     }
 
+    this.origins = origins
+
     const _removeHandler = (handler: Function) => {
       window.removeEventListener('message', handler as EventListenerOrEventListenerObject)
     }
@@ -44,7 +47,7 @@ export default class HighframeChild extends events {
 
     const _attachHandler = (origin: string) => {
       const handler = (e: MessageEvent) => {
-        if (!sanitizeMessage(e, { allowedOrigin: this.options.parentOrigin })) return
+        if (!sanitizeMessage(e, { allowedOrigin: origin })) return
         this.handleMessage(e)
       }
 
@@ -72,7 +75,10 @@ export default class HighframeChild extends events {
 
     const msg: HighframeMessage = new HighframeMessage(type, args)
 
-    parent.postMessage(msg.serialize(), this.options.parentOrigin)
+    this.origins.forEach(function (origin: string) {
+      parent.postMessage(msg.serialize(), origin)
+    })
+
     return true
   }
 }
