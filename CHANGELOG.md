@@ -1,3 +1,10 @@
+## [1.2.2](https://github.com/tillhub/highframe/compare/v1.2.1...v1.2.2) (2019-07-23)
+
+
+### Bug Fixes
+
+* **child:** handle miltiple origins ([60e7e2a](https://github.com/tillhub/highframe/commit/60e7e2a))
+
 ## [1.2.1](https://github.com/tillhub/highframe/compare/v1.2.0...v1.2.1) (2019-07-23)
 
 
