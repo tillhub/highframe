@@ -5,8 +5,8 @@ enum HighframeEventType {
   event = 1
 }
 
-function isString(test: any): test is string {
-  return typeof test === 'string'
+function isString(value: any): value is string {
+  return typeof value === 'string' || value instanceof String
 }
 
 export class HighframeMessage {
@@ -54,11 +54,15 @@ export class HighframeMessage {
   }
 
   public static deserialize(rawMessage: string, e?: MessageEvent): HighframeMessage | undefined {
+    // we are guarding against other emitter sending none strings
+    if (!isString(rawMessage)) return undefined
+
     let msg: any
     try {
       msg = JSON.parse(rawMessage)
     } catch (originalError) {
-      throw new errors.SerializationError(undefined, originalError)
+      // since we currently only allow serializing JSON, none JSONs can be treated as none-Highframe messages
+      return undefined
     }
 
     if (HighframeMessage.hasMessageSignature(msg)) {
