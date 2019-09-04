@@ -62,6 +62,11 @@ export default class HighframeChild extends events {
     this._emit('ready')
   }
 
+  public dispatch(type: string, ...args: any[]): boolean {
+    this._emit(type, ...args)
+    return true
+  }
+
   private _emit(type: string, ...args: any[]): boolean {
     if (!parent) throw new Error('Parent frame is not available')
 
