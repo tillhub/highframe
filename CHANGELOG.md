@@ -1,3 +1,10 @@
+# [1.5.0](https://github.com/tillhub/highframe/compare/v1.4.0...v1.5.0) (2019-09-04)
+
+
+### Features
+
+* **child:** add dispatch method ([2c1a94e](https://github.com/tillhub/highframe/commit/2c1a94e))
+
 # [1.4.0](https://github.com/tillhub/highframe/compare/v1.3.0...v1.4.0) (2019-07-23)
 
 
